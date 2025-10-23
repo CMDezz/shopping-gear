@@ -1,8 +1,8 @@
 // src/lib/features/auth/data/repositories/user.repository.ts
 import { ObjectId } from 'mongodb'
 import { dbManager } from '@/lib/infrastructure/database'
-import type { UserDocument, UserRepository } from '../../models/types'
-import { CreateUserData, UpdateUserData } from '../../models'
+import type { UserDocument, UserRepository } from './user.model'
+import { CreateUserData, UpdateUserData } from './user.types'
 
 export const userRepository: UserRepository = {
     async create(userData: CreateUserData): Promise<UserDocument> {

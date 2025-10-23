@@ -2,8 +2,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import type { AuthResponse, ApiResponse } from '@/lib/shared/types'
 import { authRateLimit } from '@/lib/infrastructure/middleware'
-import { userService } from '@/lib/features/auth/services/auth.service'
+import { userService } from '@/lib/features/auth/user.service'
 import { generateTokenPair, verifyRefreshToken } from '@/lib/utils'
+import {
+    NextResponseInternalError,
+    NextResponseSuccess,
+    NextResponseUnauthorized,
+} from '@/lib/infrastructure/errors'
 
 // POST /api/auth/refresh
 const refreshHandler = async (request: NextRequest) => {
@@ -11,52 +16,32 @@ const refreshHandler = async (request: NextRequest) => {
         const refreshToken = request.cookies.get('refreshToken')?.value
 
         if (!refreshToken) {
-            return NextResponse.json<ApiResponse<null>>(
-                {
-                    success: false,
-                    data: null,
-                    error: 'Refresh token not found',
-                },
-                { status: 401 }
-            )
+            return NextResponseUnauthorized({
+                message: 'Refresh token not found',
+            })
         }
 
         // Verify refresh token
         const payload = verifyRefreshToken(refreshToken)
         if (!payload) {
-            return NextResponse.json<ApiResponse<null>>(
-                {
-                    success: false,
-                    data: null,
-                    error: 'Invalid refresh token',
-                },
-                { status: 401 }
-            )
+            return NextResponseUnauthorized({
+                message: 'Invalid refresh token',
+            })
         }
 
         // Find user
         const user = await userService.getUserById(payload.userId)
         if (!user) {
-            return NextResponse.json<ApiResponse<null>>(
-                {
-                    success: false,
-                    data: null,
-                    error: 'User not found',
-                },
-                { status: 401 }
-            )
+            return NextResponseUnauthorized({
+                message: 'User not found',
+            })
         }
 
         // Check if refresh token exists in user's token list
         if (!user.refreshTokens?.includes(payload.tokenId)) {
-            return NextResponse.json<ApiResponse<null>>(
-                {
-                    success: false,
-                    data: null,
-                    error: 'Refresh token not valid',
-                },
-                { status: 401 }
-            )
+            return NextResponseUnauthorized({
+                message: 'Refresh token not valid',
+            })
         }
 
         // Generate new tokens
@@ -90,7 +75,7 @@ const refreshHandler = async (request: NextRequest) => {
             message: 'Token refreshed successfully',
         }
 
-        const nextResponse = NextResponse.json(response)
+        const nextResponse = NextResponseSuccess(response)
         nextResponse.cookies.set('authToken', accessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
@@ -108,15 +93,9 @@ const refreshHandler = async (request: NextRequest) => {
         return nextResponse
     } catch (error) {
         console.error('Refresh token API error:', error)
-
-        return NextResponse.json<ApiResponse<null>>(
-            {
-                success: false,
-                data: null,
-                error: 'Internal server error',
-            },
-            { status: 500 }
-        )
+        return NextResponseInternalError({
+            error: (error as Error).message,
+        })
     }
 }
 

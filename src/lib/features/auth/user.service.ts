@@ -1,8 +1,8 @@
 // src/lib/features/auth/services/auth.service.ts
 import bcrypt from 'bcryptjs'
-import { userRepository } from '../data/repositories/user.repository'
-import type { UserDocument, UserService } from '../models/types'
-import { CreateUserData, UpdateUserData } from '../models'
+import { userRepository } from './user.repository'
+import type { UserDocument, UserService } from './user.model'
+import { CreateUserData, UpdateUserData } from './user.types'
 
 export const userService: UserService = {
     async createUser(userData: CreateUserData): Promise<UserDocument> {

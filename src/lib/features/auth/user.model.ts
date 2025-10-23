@@ -1,6 +1,6 @@
 import 'server-only'
 import { ObjectId } from 'mongodb'
-import { CreateUserData, UpdateUserData } from './publicTypes'
+import { CreateUserData, UpdateUserData } from './user.types'
 
 export interface User {
     _id?: ObjectId

@@ -82,9 +82,7 @@ export const prefetchQueries = {
             queryKey: queryKeys.auth.profile(),
             queryFn: async () => {
                 // Import here to avoid circular dependencies
-                const { userApi } = await import(
-                    '@/lib/features/auth/api/auth.api'
-                )
+                const { userApi } = await import('@/lib/features/auth/auth.api')
                 return userApi.getProfile()
             },
         })
@@ -94,7 +92,7 @@ export const prefetchQueries = {
             queryKey: queryKeys.products.list({ page, limit }),
             queryFn: async () => {
                 const { productApi } = await import(
-                    '@/lib/features/products/api/product.api'
+                    '@/lib/features/products/product.api'
                 )
                 return productApi.getProducts(page, limit)
             },

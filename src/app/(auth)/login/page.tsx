@@ -10,10 +10,7 @@ import { Label } from '@/components/atoms/Label/Label'
 import { Card } from '@/components/molecules/Card/Card'
 import { Tabs } from '@/components/molecules/Tabs/Tabs'
 import { loginSchema, registerSchema } from '@lib/shared/schemas'
-import {
-    loginAction,
-    registerAction,
-} from '@lib/features/auth/actions/auth.actions'
+import { loginAction, registerAction } from '@/lib/features/auth/auth.actions'
 import { useLogin, useRegister } from '@lib/features/auth/hooks/auth.hooks'
 import { toast } from 'sonner'
 import type { LoginFormData, RegisterFormData } from '@lib/shared/schemas'

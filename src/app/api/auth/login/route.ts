@@ -2,8 +2,14 @@ import { NextRequest, NextResponse } from 'next/server'
 import { loginSchema } from '@lib/shared/schemas'
 import { authRateLimit } from '@lib/infrastructure/middleware'
 import type { LoginRequest, AuthResponse, ApiResponse } from '@lib/shared/types'
-import { userService } from '@lib/features/auth/services/auth.service'
+import { userService } from '@/lib/features/auth/auth.service'
 import { generateTokenPair } from '@/lib/utils'
+import {
+    NextResponseBadRequest,
+    NextResponseInternalError,
+    NextResponseSuccess,
+    NextResponseUnauthorized,
+} from '@/lib/infrastructure/errors'
 
 const loginHandler = async (req: NextRequest) => {
     try {
@@ -16,14 +22,9 @@ const loginHandler = async (req: NextRequest) => {
         const user = await userService.getUserByEmail(validatedData.email)
 
         if (!user) {
-            return NextResponse.json<ApiResponse<null>>(
-                {
-                    success: false,
-                    data: null,
-                    error: 'Invalid email or password',
-                },
-                { status: 401 }
-            )
+            return NextResponseUnauthorized({
+                message: 'Invalid email or password',
+            })
         }
 
         // Validate password
@@ -33,14 +34,9 @@ const loginHandler = async (req: NextRequest) => {
         )
 
         if (!isValidPassword) {
-            return NextResponse.json<ApiResponse<null>>(
-                {
-                    success: false,
-                    data: null,
-                    error: 'Invalid email or password',
-                },
-                { status: 401 }
-            )
+            return NextResponseUnauthorized({
+                message: 'Invalid email or password',
+            })
         }
 
         // Generate tokens
@@ -66,7 +62,7 @@ const loginHandler = async (req: NextRequest) => {
             message: 'Login successful',
         }
 
-        const nextResponse = NextResponse.json(response)
+        const nextResponse = NextResponseSuccess(response)
         nextResponse.cookies.set('authToken', accessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
@@ -86,24 +82,13 @@ const loginHandler = async (req: NextRequest) => {
         console.error('Login API error:', error)
 
         if (error instanceof Error && error.name === 'ZodError') {
-            return NextResponse.json<ApiResponse<null>>(
-                {
-                    success: false,
-                    data: null,
-                    error: 'Validation error',
-                },
-                { status: 400 }
-            )
+            return NextResponseBadRequest({
+                error: error.message,
+                message: 'Validation error',
+            })
         }
 
-        return NextResponse.json<ApiResponse<null>>(
-            {
-                success: false,
-                data: null,
-                error: 'Internal server error',
-            },
-            { status: 500 }
-        )
+        return NextResponseInternalError({ error: (error as Error).message })
     }
 }
 

@@ -1,25 +1,21 @@
 // src/libs/middleware/serverActions.ts
 import { z } from 'zod'
+import { zfd } from 'zod-form-data'
 import { cookies } from 'next/headers'
 import { verifyAccessToken } from '@/lib/utils'
+import { ApiResponse } from '@/lib/shared'
 
-export function withValidation<T extends z.ZodSchema>(
+export function withValidation<T extends z.ZodSchema, X>(
     schema: T,
-    handler: (data: z.infer<T>) => Promise<{
-        success: boolean
-        message?: string
-        error?: string
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        data?: any
-    }>
+    handler: (data: z.infer<T>) => Promise<ApiResponse<X>>
 ) {
-    return async (formData: FormData) => {
+    return async (data: FormData | Record<string, any>) => {
         try {
-            // Convert FormData to object
-            const data = Object.fromEntries(formData.entries())
-
-            // Validate with Zod
-            const validatedData = schema.parse(data)
+            let parsedData = data
+            if (data instanceof FormData) {
+                parsedData = Object.fromEntries(data.entries())
+            }
+            const validatedData = schema.parse(parsedData)
 
             // Execute handler
             return await handler(validatedData)
@@ -41,16 +37,7 @@ export function withValidation<T extends z.ZodSchema>(
 
 export function withAuthServerAction<T extends z.ZodSchema>(
     schema: T,
-    handler: (
-        data: z.infer<T>,
-        userId: string
-    ) => Promise<{
-        success: boolean
-        message?: string
-        error?: string
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        data?: any
-    }>
+    handler: (data: z.infer<T>, userId: string) => Promise<ApiResponse<any>>
 ) {
     return async (formData: FormData) => {
         try {

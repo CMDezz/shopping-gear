@@ -1,4 +1,3 @@
-// src/lib/features/auth/actions/auth.actions.ts
 'use server'
 
 import { revalidatePath } from 'next/cache'
@@ -9,7 +8,7 @@ import {
     withValidation,
     withAuthServerAction,
 } from '@/lib/infrastructure/middleware'
-import { userService } from '../services/auth.service'
+import { userService } from './user.service'
 import { generateTokenPair, verifyAccessToken } from '@/lib/utils'
 
 // Server Action: Login with validation middleware

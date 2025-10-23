@@ -2,8 +2,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import type { ApiResponse } from '@/lib/shared/types'
 import { authRateLimit } from '@/lib/infrastructure/middleware'
-import { userService } from '@/lib/features/auth/services/auth.service'
+import { userService } from '@/lib/features/auth/user.service'
 import { verifyRefreshToken } from '@/lib/utils'
+import {
+    NextResponseInternalError,
+    NextResponseSuccess,
+} from '@/lib/infrastructure/errors'
 
 // POST /api/auth/logout
 const logoutHandler = async (request: NextRequest) => {
@@ -28,7 +32,7 @@ const logoutHandler = async (request: NextRequest) => {
             message: 'Logout successful',
         }
 
-        const nextResponse = NextResponse.json(response)
+        const nextResponse = NextResponseSuccess(response)
 
         // Clear cookies
         nextResponse.cookies.delete('authToken')
@@ -37,15 +41,7 @@ const logoutHandler = async (request: NextRequest) => {
         return nextResponse
     } catch (error) {
         console.error('Logout API error:', error)
-
-        return NextResponse.json<ApiResponse<null>>(
-            {
-                success: false,
-                data: null,
-                error: 'Internal server error',
-            },
-            { status: 500 }
-        )
+        return NextResponseInternalError({ error: (error as Error).message })
     }
 }
 

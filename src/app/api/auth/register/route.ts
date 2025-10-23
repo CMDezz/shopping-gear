@@ -6,8 +6,14 @@ import type {
     ApiResponse,
 } from '@/lib/shared/types'
 import { authRateLimit } from '@/lib/infrastructure/middleware'
-import { userService } from '@/lib/features/auth/services/auth.service'
+import { userService } from '@/lib/features/auth/user.service'
 import { generateTokenPair } from '@/lib/utils'
+import {
+    NextResponseBadRequest,
+    NextResponseConflict,
+    NextResponseInternalError,
+    NextResponseSuccess,
+} from '@/lib/infrastructure/errors'
 
 const registerSchema = z.object({
     email: z.string().email('Invalid email address'),
@@ -29,14 +35,9 @@ const registerHandler = async (request: NextRequest) => {
             validatedData.email
         )
         if (existingUser) {
-            return NextResponse.json<ApiResponse<null>>(
-                {
-                    success: false,
-                    data: null,
-                    error: 'User with this email already exists',
-                },
-                { status: 409 }
-            )
+            return NextResponseConflict({
+                message: 'User with this email already exists',
+            })
         }
 
         // Create new user
@@ -71,7 +72,7 @@ const registerHandler = async (request: NextRequest) => {
         }
 
         // Set httpOnly cookies for tokens
-        const nextResponse = NextResponse.json(response)
+        const nextResponse = NextResponseSuccess(response)
         nextResponse.cookies.set('authToken', accessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
@@ -91,24 +92,13 @@ const registerHandler = async (request: NextRequest) => {
         console.error('Register API error:', error)
 
         if (error instanceof z.ZodError) {
-            return NextResponse.json<ApiResponse<null>>(
-                {
-                    success: false,
-                    data: null,
-                    error: error.issues[0].message,
-                },
-                { status: 400 }
-            )
+            return NextResponseBadRequest({
+                error: error.issues[0].message,
+                message: 'Validation failed',
+            })
         }
 
-        return NextResponse.json<ApiResponse<null>>(
-            {
-                success: false,
-                data: null,
-                error: 'Internal server error',
-            },
-            { status: 500 }
-        )
+        return NextResponseInternalError({ error: (error as Error).message })
     }
 }
 
