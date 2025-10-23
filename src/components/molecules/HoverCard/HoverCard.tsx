@@ -1,5 +1,5 @@
 import * as ShaHoverCard from '@shadcn-ui/hover-card'
-import { cn } from '@/libs/utils/cn'
+import { cn } from '@/lib/core/utils/cn'
 
 export const HoverCard = ({
     ...props

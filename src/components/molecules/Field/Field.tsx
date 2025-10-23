@@ -1,5 +1,5 @@
 import * as ShaField from "@shadcn-ui/field";
-import { cn } from "@/libs/utils/cn";
+import { cn } from "@lib/core/utils";
 
 export const Field = ({
   className,

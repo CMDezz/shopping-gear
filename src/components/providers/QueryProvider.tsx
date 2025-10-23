@@ -4,7 +4,7 @@
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useState } from "react";
-import { queryClient } from "@/libs/query/client";
+import { queryClient } from "@lib/infrastructure/query";
 
 export function QueryProvider({ children }: { children: React.ReactNode }) {
   // Create a stable client instance

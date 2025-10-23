@@ -1,5 +1,5 @@
 import * as ShaPopover from "@shadcn-ui/popover";
-import { cn } from "@/libs/utils/cn";
+import { cn } from "@lib/core/utils";
 
 export const Popover = ({
   ...props

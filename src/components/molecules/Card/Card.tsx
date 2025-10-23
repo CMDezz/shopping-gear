@@ -1,6 +1,6 @@
 // src/components/atoms/Card/index.tsx
 import * as ShaCard from "@shadcn-ui/card";
-import { cn } from "@/libs/utils/cn";
+import { cn } from "@lib/core/utils";
 
 // Card container
 export const Card = ({

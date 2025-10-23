@@ -1,5 +1,5 @@
 import { Checkbox as ShaCheckbox } from "@shadcn-ui/checkbox";
-import { cn } from "@/libs/utils/cn";
+import { cn } from "@lib/core/utils";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface CheckboxProps

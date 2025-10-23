@@ -1,6 +1,6 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
-import { font_inter, font_playwrite } from "@libs/configs/fonts";
+import { font_inter, font_playwrite } from "@lib/core/config/fonts";
 import "./globals.css";
 import { Toaster } from "@/components/molecules/Sonner/Sonner";
 import { QueryProvider } from "@/components/providers/QueryProvider";

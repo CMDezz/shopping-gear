@@ -1,5 +1,5 @@
 import * as ShaSelect from "@shadcn-ui/select";
-import { cn } from "@/libs/utils/cn";
+import { cn } from "@lib/core/utils";
 
 // Main Select container
 export const Select = ({

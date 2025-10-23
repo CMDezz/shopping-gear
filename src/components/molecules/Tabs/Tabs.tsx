@@ -1,5 +1,5 @@
 import * as ShaTabs from "@shadcn-ui/tabs";
-import { cn } from "@/libs/utils/cn";
+import { cn } from "@lib/core/utils";
 
 export const Tabs = ({
   className,

@@ -1,5 +1,5 @@
 import * as ShaDrawer from "@shadcn-ui/drawer";
-import { cn } from "@/libs/utils/cn";
+import { cn } from "@lib/core/utils";
 
 export const Drawer = ({
   ...props

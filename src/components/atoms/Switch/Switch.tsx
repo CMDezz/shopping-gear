@@ -1,5 +1,5 @@
 import { Switch as ShaSwitch } from "@shadcn-ui/switch";
-import { cn } from "@libs/utils/cn";
+import { cn } from "@lib/core/utils/cn";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface SwitchProps extends React.ComponentProps<typeof ShaSwitch> {}

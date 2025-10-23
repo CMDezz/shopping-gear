@@ -1,5 +1,5 @@
 import * as ShaTooltip from "@shadcn-ui/tooltip";
-import { cn } from "@/libs/utils/cn";
+import { cn } from "@lib/core/utils";
 
 export const Tooltip = ({
   ...props

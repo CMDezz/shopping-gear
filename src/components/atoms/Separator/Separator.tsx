@@ -1,5 +1,5 @@
 import { Separator as ShaSeparator } from "@shadcn-ui/separator";
-import { cn } from "@libs/utils/cn";
+import { cn } from "@lib/core/utils/cn";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface SeparatorProps

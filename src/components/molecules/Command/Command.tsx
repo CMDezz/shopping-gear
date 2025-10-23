@@ -1,5 +1,5 @@
 import * as ShaCommand from "@shadcn-ui/command";
-import { cn } from "@/libs/utils/cn";
+import { cn } from "@lib/core/utils";
 
 export const Command = ({
   className,

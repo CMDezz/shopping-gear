@@ -1,5 +1,5 @@
 import * as ShaInputGroup from "@shadcn-ui/input-group";
-import { cn } from "@/libs/utils/cn";
+import { cn } from "@lib/core/utils";
 
 export const InputGroup = ({
   className,

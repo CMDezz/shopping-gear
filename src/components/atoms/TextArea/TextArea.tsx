@@ -1,5 +1,5 @@
 import { Textarea as ShaTextarea } from "@shadcn-ui/textarea";
-import { cn } from "@libs/utils/cn";
+import { cn } from "@lib/core/utils/cn";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface TextAreaProps

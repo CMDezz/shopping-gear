@@ -1,5 +1,5 @@
 import * as ShaDialog from "@shadcn-ui/dialog";
-import { cn } from "@/libs/utils/cn";
+import { cn } from "@lib/core/utils";
 
 export const Dialog = ({
   ...props

@@ -1,9 +1,9 @@
 // src/app/api/auth/refresh/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import type { AuthResponse, ApiResponse } from '@/libs/types/api';
-import { authRateLimit } from '@/libs/middleware/rateLimit';
-import { UserModel } from '@/libs/models/User';
-import { generateTokenPair, verifyRefreshToken } from '@/libs/utils/jwt';
+import type { AuthResponse, ApiResponse } from '@/lib/shared/types';
+import { authRateLimit } from '@/lib/infrastructure/middleware';
+import { userService } from '@/lib/features/auth/services/auth.service';
+import { generateTokenPair, verifyRefreshToken } from '@/lib/core/utils';
 
 // POST /api/auth/refresh
 const refreshHandler = async (request: NextRequest) => {
@@ -35,7 +35,7 @@ const refreshHandler = async (request: NextRequest) => {
     }
 
     // Find user
-    const user = await UserModel.findById(payload.userId);
+    const user = await userService.getUserById(payload.userId);
     if (!user) {
       return NextResponse.json<ApiResponse<null>>(
         {
@@ -66,8 +66,8 @@ const refreshHandler = async (request: NextRequest) => {
     });
 
     // Remove old refresh token and add new one
-    await UserModel.removeRefreshToken(user._id.toString(), payload.tokenId);
-    await UserModel.addRefreshToken(user._id.toString(), newTokenId);
+    await userService.removeRefreshToken(user._id.toString(), payload.tokenId);
+    await userService.addRefreshToken(user._id.toString(), newTokenId);
 
     const response: ApiResponse<AuthResponse> = {
       success: true,

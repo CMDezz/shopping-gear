@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import type { RegisterRequest, AuthResponse, ApiResponse } from '@/libs/types/api';
-import { authRateLimit } from '@/libs/middleware/rateLimit';
-import { UserModel } from '@/libs/models/User';
-import { generateTokenPair } from '@/libs/utils/jwt';
+import type { RegisterRequest, AuthResponse, ApiResponse } from '@/lib/shared/types';
+import { authRateLimit } from '@/lib/infrastructure/middleware';
+import { userService } from '@/lib/features/auth/services/auth.service';
+import { generateTokenPair } from '@/lib/core/utils';
 
 const registerSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -21,7 +21,7 @@ const registerHandler = async (request: NextRequest) => {
     const validatedData = registerSchema.parse(body);
 
     // Check if user already exists
-    const existingUser = await UserModel.findByEmail(validatedData.email);
+    const existingUser = await userService.getUserByEmail(validatedData.email);
     if (existingUser) {
       return NextResponse.json<ApiResponse<null>>(
         {
@@ -34,7 +34,7 @@ const registerHandler = async (request: NextRequest) => {
     }
 
     // Create new user
-    const newUser = await UserModel.create({
+    const newUser = await userService.createUser({
       email: validatedData.email,
       password: validatedData.password,
       firstName: validatedData.firstName,
@@ -48,7 +48,7 @@ const registerHandler = async (request: NextRequest) => {
     });
 
     // Store refresh token in database
-    await UserModel.addRefreshToken(newUser._id.toString(), tokenId);
+    await userService.addRefreshToken(newUser._id.toString(), tokenId);
     
     const response: ApiResponse<AuthResponse> = {
       success: true,

@@ -1,5 +1,5 @@
 import * as ShaSheet from "@shadcn-ui/sheet";
-import { cn } from "@/libs/utils/cn";
+import { cn } from "@lib/core/utils";
 
 export const Sheet = ({
   ...props

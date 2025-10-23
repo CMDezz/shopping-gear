@@ -1,5 +1,5 @@
 import { Button as ShaButton } from "@shadcn-ui/button";
-import { cn } from "@libs/utils/cn";
+import { cn } from "@lib/core/utils/cn";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface ButtonProps extends React.ComponentProps<typeof ShaButton> {}

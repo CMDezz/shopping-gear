@@ -1,5 +1,5 @@
 import * as ShaDropdownMenu from "@shadcn-ui/dropdown-menu";
-import { cn } from "@/libs/utils/cn";
+import { cn } from "@lib/core/utils";
 
 export const DropdownMenu = ({
   ...props

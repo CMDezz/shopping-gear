@@ -1,24 +1,36 @@
 // src/app/api/user/profile/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { withAuth } from "@/libs/middleware/auth";
-import { apiRateLimit } from "@/libs/middleware/rateLimit";
-import type { ApiResponse, User } from "@/libs/types/api";
+import { withAuth } from "@lib/infrastructure/middleware";
+import { apiRateLimit } from "@lib/infrastructure/middleware";
+import type { ApiResponse, User } from "@lib/shared/types";
+import { userService } from "@lib/features/auth/services/auth.service";
 import { JwtPayload } from "jsonwebtoken";
-
-const mockUser: User = {
-  id: "1",
-  email: "user@example.com",
-  firstName: "John",
-  lastName: "Doe",
-  createdAt: new Date().toISOString(),
-  updatedAt: new Date().toISOString(),
-};
 
 const getProfileHandler = async (req: NextRequest, user: JwtPayload) => {
   try {
+    const userData = await userService.getUserById(user.userId);
+    
+    if (!userData) {
+      return NextResponse.json<ApiResponse<null>>(
+        {
+          success: false,
+          data: null,
+          error: "User not found",
+        },
+        { status: 404 }
+      );
+    }
+
     const response: ApiResponse<User> = {
       success: true,
-      data: mockUser,
+      data: {
+        id: userData._id.toString(),
+        email: userData.email,
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        createdAt: userData.createdAt.toISOString(),
+        updatedAt: userData.updatedAt.toISOString(),
+      },
       message: "Profile retrieved successfully",
     };
 

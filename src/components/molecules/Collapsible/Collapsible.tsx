@@ -1,5 +1,5 @@
 import * as ShaCollapsible from "@shadcn-ui/collapsible";
-import { cn } from "@/libs/utils/cn";
+import { cn } from "@lib/core/utils";
 
 export const Collapsible = ({
   className,

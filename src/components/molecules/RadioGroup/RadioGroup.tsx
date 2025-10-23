@@ -1,5 +1,5 @@
 import * as ShaRadioGroup from "@shadcn-ui/radio-group";
-import { cn } from "@/libs/utils/cn";
+import { cn } from "@lib/core/utils";
 
 // Main RadioGroup container
 export const RadioGroup = ({

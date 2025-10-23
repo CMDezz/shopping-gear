@@ -9,11 +9,11 @@ import { Input } from "@/components/atoms/Input/Input";
 import { Label } from "@/components/atoms/Label/Label";
 import { Card } from "@/components/molecules/Card/Card";
 import { Tabs } from "@/components/molecules/Tabs/Tabs";
-import { loginSchema, registerSchema } from "@/libs/schemas/auth";
-import { loginAction, registerAction } from "@/libs/actions/auth";
-import { useLogin, useRegister } from "@/libs/query/hooks/auth";
+import { loginSchema, registerSchema } from "@lib/shared/schemas";
+import { loginAction, registerAction } from "@lib/features/auth/actions/auth.actions";
+import { useLogin, useRegister } from "@lib/features/auth/hooks/auth.hooks";
 import { toast } from "sonner";
-import type { LoginFormData, RegisterFormData } from "@/libs/schemas/auth";
+import type { LoginFormData, RegisterFormData } from "@lib/shared/schemas";
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);

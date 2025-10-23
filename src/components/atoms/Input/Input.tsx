@@ -1,5 +1,5 @@
 import { Input as ShaInput } from "@shadcn-ui/input";
-import { cn } from "@libs/utils/cn";
+import { cn } from "@lib/core/utils/cn";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface InputProps extends React.ComponentProps<typeof ShaInput> {}

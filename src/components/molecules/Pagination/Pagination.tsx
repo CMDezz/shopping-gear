@@ -1,5 +1,5 @@
 import * as ShaPagination from "@shadcn-ui/pagination";
-import { cn } from "@/libs/utils/cn";
+import { cn } from "@lib/core/utils";
 
 export const Pagination = ({
   className,

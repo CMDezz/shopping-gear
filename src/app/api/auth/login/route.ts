@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { loginSchema } from "@/libs/schemas/auth";
-import { authRateLimit } from "@/libs/middleware/rateLimit";
-import type { LoginRequest, AuthResponse, ApiResponse } from "@/libs/types/api";
-import { UserModel } from "@/libs/models/User";
-import { generateTokenPair } from "@/libs/utils/jwt";
+import { loginSchema } from "@lib/shared/schemas";
+import { authRateLimit } from "@lib/infrastructure/middleware";
+import type { LoginRequest, AuthResponse, ApiResponse } from "@lib/shared/types";
+import { userService } from "@lib/features/auth/services/auth.service";
+import { generateTokenPair } from "@lib/core/utils";
 
 const loginHandler = async (req: NextRequest) => {
   try {
@@ -13,7 +13,7 @@ const loginHandler = async (req: NextRequest) => {
     const validatedData = loginSchema.parse(body);
 
     // Find user by email
-    const user = await UserModel.findByEmail(validatedData.email);
+    const user = await userService.getUserByEmail(validatedData.email);
 
     if (!user) {
       return NextResponse.json<ApiResponse<null>>(
@@ -27,7 +27,7 @@ const loginHandler = async (req: NextRequest) => {
     }
 
     // Validate password
-    const isValidPassword = await UserModel.validatePassword(user, validatedData.password);
+    const isValidPassword = await userService.validatePassword(user, validatedData.password);
 
     if (!isValidPassword) {
       return NextResponse.json<ApiResponse<null>>(
@@ -47,7 +47,7 @@ const loginHandler = async (req: NextRequest) => {
     });
 
     // Store refresh token in database
-    await UserModel.addRefreshToken(user._id.toString(), tokenId);
+    await userService.addRefreshToken(user._id.toString(), tokenId);
 
     const response: ApiResponse<AuthResponse> = {
       success: true,

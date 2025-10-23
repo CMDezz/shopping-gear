@@ -1,9 +1,9 @@
 // src/app/api/auth/logout/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import type { ApiResponse } from '@/libs/types/api';
-import { authRateLimit } from '@/libs/middleware/rateLimit';
-import { UserModel } from '@/libs/models/User';
-import { verifyRefreshToken } from '@/libs/utils/jwt';
+import type { ApiResponse } from '@/lib/shared/types';
+import { authRateLimit } from '@/lib/infrastructure/middleware';
+import { userService } from '@/lib/features/auth/services/auth.service';
+import { verifyRefreshToken } from '@/lib/core/utils';
 
 // POST /api/auth/logout
 const logoutHandler = async (request: NextRequest) => {
@@ -15,7 +15,7 @@ const logoutHandler = async (request: NextRequest) => {
       const payload = verifyRefreshToken(refreshToken);
       if (payload) {
         // Remove refresh token from database
-        await UserModel.removeRefreshToken(payload.userId, payload.tokenId);
+        await userService.removeRefreshToken(payload.userId, payload.tokenId);
       }
     }
 

@@ -1,5 +1,5 @@
 import * as ShaAvatar from "@shadcn-ui/avatar";
-import { cn } from "@/libs/utils/cn";
+import { cn } from "@lib/core/utils";
 
 export const Avatar = ({
   className,

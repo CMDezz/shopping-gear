@@ -1,5 +1,5 @@
 import * as ShaAlert from "@shadcn-ui/alert";
-import { cn } from "@/libs/utils/cn";
+import { cn } from "@lib/core/utils";
 
 export const Alert = ({
   className,
