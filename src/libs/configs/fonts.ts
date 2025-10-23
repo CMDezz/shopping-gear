@@ -1,5 +1,4 @@
 import localFont from "next/font/local";
-import path from "path";
 export const font_inter = localFont({
   src: [
     {
