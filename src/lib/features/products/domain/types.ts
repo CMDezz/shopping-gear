@@ -13,5 +13,3 @@ export interface Product {
 export interface ProductDocument extends Omit<Product, '_id'> {
     _id: ObjectId
 }
-
-export const 

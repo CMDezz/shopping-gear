@@ -1,23 +1,23 @@
-import * as ShaAlert from "@shadcn-ui/alert";
-import { cn } from "@lib/core/utils";
+import * as ShaAlert from '@shadcn-ui/alert'
+import { cn } from '@/lib/utils'
 
 export const Alert = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaAlert.Alert>) => (
-  <ShaAlert.Alert className={cn(className)} {...props} />
-);
+    <ShaAlert.Alert className={cn(className)} {...props} />
+)
 
 export const AlertTitle = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaAlert.AlertTitle>) => (
-  <ShaAlert.AlertTitle className={cn(className)} {...props} />
-);
+    <ShaAlert.AlertTitle className={cn(className)} {...props} />
+)
 
 export const AlertDescription = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaAlert.AlertDescription>) => (
-  <ShaAlert.AlertDescription className={cn(className)} {...props} />
-);
+    <ShaAlert.AlertDescription className={cn(className)} {...props} />
+)

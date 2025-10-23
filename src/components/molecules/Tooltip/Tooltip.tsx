@@ -1,28 +1,28 @@
-import * as ShaTooltip from "@shadcn-ui/tooltip";
-import { cn } from "@lib/core/utils";
+import * as ShaTooltip from '@shadcn-ui/tooltip'
+import { cn } from '@/lib/utils'
 
 export const Tooltip = ({
-  ...props
+    ...props
 }: React.ComponentProps<typeof ShaTooltip.Tooltip>) => (
-  <ShaTooltip.Tooltip {...props} />
-);
+    <ShaTooltip.Tooltip {...props} />
+)
 
 export const TooltipTrigger = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaTooltip.TooltipTrigger>) => (
-  <ShaTooltip.TooltipTrigger className={cn(className)} {...props} />
-);
+    <ShaTooltip.TooltipTrigger className={cn(className)} {...props} />
+)
 
 export const TooltipContent = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaTooltip.TooltipContent>) => (
-  <ShaTooltip.TooltipContent className={cn(className)} {...props} />
-);
+    <ShaTooltip.TooltipContent className={cn(className)} {...props} />
+)
 
 export const TooltipProvider = ({
-  ...props
+    ...props
 }: React.ComponentProps<typeof ShaTooltip.TooltipProvider>) => (
-  <ShaTooltip.TooltipProvider {...props} />
-);
+    <ShaTooltip.TooltipProvider {...props} />
+)

@@ -1,29 +1,29 @@
-import * as ShaPopover from "@shadcn-ui/popover";
-import { cn } from "@lib/core/utils";
+import * as ShaPopover from '@shadcn-ui/popover'
+import { cn } from '@/lib/utils'
 
 export const Popover = ({
-  ...props
+    ...props
 }: React.ComponentProps<typeof ShaPopover.Popover>) => (
-  <ShaPopover.Popover {...props} />
-);
+    <ShaPopover.Popover {...props} />
+)
 
 export const PopoverTrigger = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaPopover.PopoverTrigger>) => (
-  <ShaPopover.PopoverTrigger className={cn(className)} {...props} />
-);
+    <ShaPopover.PopoverTrigger className={cn(className)} {...props} />
+)
 
 export const PopoverContent = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaPopover.PopoverContent>) => (
-  <ShaPopover.PopoverContent className={cn(className)} {...props} />
-);
+    <ShaPopover.PopoverContent className={cn(className)} {...props} />
+)
 
 export const PopoverAnchor = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaPopover.PopoverAnchor>) => (
-  <ShaPopover.PopoverAnchor className={cn(className)} {...props} />
-);
+    <ShaPopover.PopoverAnchor className={cn(className)} {...props} />
+)

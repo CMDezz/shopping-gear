@@ -1,49 +1,49 @@
-import * as ShaPagination from "@shadcn-ui/pagination";
-import { cn } from "@lib/core/utils";
+import * as ShaPagination from '@shadcn-ui/pagination'
+import { cn } from '@/lib/utils'
 
 export const Pagination = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaPagination.Pagination>) => (
-  <ShaPagination.Pagination className={cn(className)} {...props} />
-);
+    <ShaPagination.Pagination className={cn(className)} {...props} />
+)
 
 export const PaginationItem = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaPagination.PaginationItem>) => (
-  <ShaPagination.PaginationItem className={cn(className)} {...props} />
-);
+    <ShaPagination.PaginationItem className={cn(className)} {...props} />
+)
 
 export const PaginationNext = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaPagination.PaginationNext>) => (
-  <ShaPagination.PaginationNext className={cn(className)} {...props} />
-);
+    <ShaPagination.PaginationNext className={cn(className)} {...props} />
+)
 
 export const PaginationPrevious = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaPagination.PaginationPrevious>) => (
-  <ShaPagination.PaginationPrevious className={cn(className)} {...props} />
-);
+    <ShaPagination.PaginationPrevious className={cn(className)} {...props} />
+)
 
 export const PaginationContent = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaPagination.PaginationContent>) => (
-  <ShaPagination.PaginationContent className={cn(className)} {...props} />
-);
+    <ShaPagination.PaginationContent className={cn(className)} {...props} />
+)
 export const PaginationLink = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaPagination.PaginationLink>) => (
-  <ShaPagination.PaginationLink className={cn(className)} {...props} />
-);
+    <ShaPagination.PaginationLink className={cn(className)} {...props} />
+)
 export const PaginationEllipsis = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaPagination.PaginationEllipsis>) => (
-  <ShaPagination.PaginationEllipsis className={cn(className)} {...props} />
-);
+    <ShaPagination.PaginationEllipsis className={cn(className)} {...props} />
+)

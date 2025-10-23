@@ -1,18 +1,18 @@
-import * as ShaRadioGroup from "@shadcn-ui/radio-group";
-import { cn } from "@lib/core/utils";
+import * as ShaRadioGroup from '@shadcn-ui/radio-group'
+import { cn } from '@/lib/utils'
 
 // Main RadioGroup container
 export const RadioGroup = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaRadioGroup.RadioGroup>) => (
-  <ShaRadioGroup.RadioGroup className={cn(className)} {...props} />
-);
+    <ShaRadioGroup.RadioGroup className={cn(className)} {...props} />
+)
 
 // RadioGroup Item
 export const RadioGroupItem = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaRadioGroup.RadioGroupItem>) => (
-  <ShaRadioGroup.RadioGroupItem className={cn(className)} {...props} />
-);
+    <ShaRadioGroup.RadioGroupItem className={cn(className)} {...props} />
+)

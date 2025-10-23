@@ -1,70 +1,70 @@
-import * as ShaDialog from "@shadcn-ui/dialog";
-import { cn } from "@lib/core/utils";
+import * as ShaDialog from '@shadcn-ui/dialog'
+import { cn } from '@/lib/utils'
 
 export const Dialog = ({
-  ...props
+    ...props
 }: React.ComponentProps<typeof ShaDialog.Dialog>) => (
-  <ShaDialog.Dialog {...props} />
-);
+    <ShaDialog.Dialog {...props} />
+)
 
 export const DialogTrigger = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaDialog.DialogTrigger>) => (
-  <ShaDialog.DialogTrigger className={cn(className)} {...props} />
-);
+    <ShaDialog.DialogTrigger className={cn(className)} {...props} />
+)
 
 export const DialogClose = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaDialog.DialogClose>) => (
-  <ShaDialog.DialogClose className={cn(className)} {...props} />
-);
+    <ShaDialog.DialogClose className={cn(className)} {...props} />
+)
 
 export const DialogDescription = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaDialog.DialogDescription>) => (
-  <ShaDialog.DialogDescription className={cn(className)} {...props} />
-);
+    <ShaDialog.DialogDescription className={cn(className)} {...props} />
+)
 
 export const DialogOverlay = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaDialog.DialogOverlay>) => (
-  <ShaDialog.DialogOverlay className={cn(className)} {...props} />
-);
+    <ShaDialog.DialogOverlay className={cn(className)} {...props} />
+)
 
 export const DialogPortal = ({
-  ...props
+    ...props
 }: React.ComponentProps<typeof ShaDialog.DialogPortal>) => (
-  <ShaDialog.DialogPortal {...props} />
-);
+    <ShaDialog.DialogPortal {...props} />
+)
 
 export const DialogTitle = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaDialog.DialogTitle>) => (
-  <ShaDialog.DialogTitle className={cn(className)} {...props} />
-);
+    <ShaDialog.DialogTitle className={cn(className)} {...props} />
+)
 
 export const DialogContent = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaDialog.DialogContent>) => (
-  <ShaDialog.DialogContent className={cn(className)} {...props} />
-);
+    <ShaDialog.DialogContent className={cn(className)} {...props} />
+)
 
 export const DialogHeader = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaDialog.DialogHeader>) => (
-  <ShaDialog.DialogHeader className={cn(className)} {...props} />
-);
+    <ShaDialog.DialogHeader className={cn(className)} {...props} />
+)
 
 export const DialogFooter = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaDialog.DialogFooter>) => (
-  <ShaDialog.DialogFooter className={cn(className)} {...props} />
-);
+    <ShaDialog.DialogFooter className={cn(className)} {...props} />
+)

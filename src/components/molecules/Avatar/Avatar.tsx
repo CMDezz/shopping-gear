@@ -1,23 +1,23 @@
-import * as ShaAvatar from "@shadcn-ui/avatar";
-import { cn } from "@lib/core/utils";
+import * as ShaAvatar from '@shadcn-ui/avatar'
+import { cn } from '@/lib/utils'
 
 export const Avatar = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaAvatar.Avatar>) => (
-  <ShaAvatar.Avatar className={cn(className)} {...props} />
-);
+    <ShaAvatar.Avatar className={cn(className)} {...props} />
+)
 
 export const AvatarImage = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaAvatar.AvatarImage>) => (
-  <ShaAvatar.AvatarImage className={cn(className)} {...props} />
-);
+    <ShaAvatar.AvatarImage className={cn(className)} {...props} />
+)
 
 export const AvatarFallback = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaAvatar.AvatarFallback>) => (
-  <ShaAvatar.AvatarFallback className={cn(className)} {...props} />
-);
+    <ShaAvatar.AvatarFallback className={cn(className)} {...props} />
+)

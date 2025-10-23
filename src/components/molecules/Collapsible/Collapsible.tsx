@@ -1,23 +1,23 @@
-import * as ShaCollapsible from "@shadcn-ui/collapsible";
-import { cn } from "@lib/core/utils";
+import * as ShaCollapsible from '@shadcn-ui/collapsible'
+import { cn } from '@/lib/utils'
 
 export const Collapsible = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaCollapsible.Collapsible>) => (
-  <ShaCollapsible.Collapsible className={cn(className)} {...props} />
-);
+    <ShaCollapsible.Collapsible className={cn(className)} {...props} />
+)
 
 export const CollapsibleTrigger = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaCollapsible.CollapsibleTrigger>) => (
-  <ShaCollapsible.CollapsibleTrigger className={cn(className)} {...props} />
-);
+    <ShaCollapsible.CollapsibleTrigger className={cn(className)} {...props} />
+)
 
 export const CollapsibleContent = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaCollapsible.CollapsibleContent>) => (
-  <ShaCollapsible.CollapsibleContent className={cn(className)} {...props} />
-);
+    <ShaCollapsible.CollapsibleContent className={cn(className)} {...props} />
+)

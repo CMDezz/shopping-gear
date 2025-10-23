@@ -1,30 +1,30 @@
-import * as ShaTabs from "@shadcn-ui/tabs";
-import { cn } from "@lib/core/utils";
+import * as ShaTabs from '@shadcn-ui/tabs'
+import { cn } from '@/lib/utils'
 
 export const Tabs = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaTabs.Tabs>) => (
-  <ShaTabs.Tabs className={cn(className)} {...props} />
-);
+    <ShaTabs.Tabs className={cn(className)} {...props} />
+)
 
 export const TabsList = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaTabs.TabsList>) => (
-  <ShaTabs.TabsList className={cn(className)} {...props} />
-);
+    <ShaTabs.TabsList className={cn(className)} {...props} />
+)
 
 export const TabsTrigger = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaTabs.TabsTrigger>) => (
-  <ShaTabs.TabsTrigger className={cn(className)} {...props} />
-);
+    <ShaTabs.TabsTrigger className={cn(className)} {...props} />
+)
 
 export const TabsContent = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaTabs.TabsContent>) => (
-  <ShaTabs.TabsContent className={cn(className)} {...props} />
-);
+    <ShaTabs.TabsContent className={cn(className)} {...props} />
+)

@@ -1,44 +1,44 @@
-import * as ShaInputGroup from "@shadcn-ui/input-group";
-import { cn } from "@lib/core/utils";
+import * as ShaInputGroup from '@shadcn-ui/input-group'
+import { cn } from '@/lib/utils'
 
 export const InputGroup = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaInputGroup.InputGroup>) => (
-  <ShaInputGroup.InputGroup className={cn(className)} {...props} />
-);
+    <ShaInputGroup.InputGroup className={cn(className)} {...props} />
+)
 
 export const InputGroupAddon = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaInputGroup.InputGroupAddon>) => (
-  <ShaInputGroup.InputGroupAddon className={cn(className)} {...props} />
-);
+    <ShaInputGroup.InputGroupAddon className={cn(className)} {...props} />
+)
 
 export const InputGroupButton = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaInputGroup.InputGroupButton>) => (
-  <ShaInputGroup.InputGroupButton className={cn(className)} {...props} />
-);
+    <ShaInputGroup.InputGroupButton className={cn(className)} {...props} />
+)
 
 export const InputGroupText = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaInputGroup.InputGroupText>) => (
-  <ShaInputGroup.InputGroupText className={cn(className)} {...props} />
-);
+    <ShaInputGroup.InputGroupText className={cn(className)} {...props} />
+)
 
 export const InputGroupInput = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaInputGroup.InputGroupInput>) => (
-  <ShaInputGroup.InputGroupInput className={cn(className)} {...props} />
-);
+    <ShaInputGroup.InputGroupInput className={cn(className)} {...props} />
+)
 
 export const InputGroupTextarea = ({
-  className,
-  ...props
+    className,
+    ...props
 }: React.ComponentProps<typeof ShaInputGroup.InputGroupTextarea>) => (
-  <ShaInputGroup.InputGroupTextarea className={cn(className)} {...props} />
-);
+    <ShaInputGroup.InputGroupTextarea className={cn(className)} {...props} />
+)
