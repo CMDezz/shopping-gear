@@ -1,6 +1,5 @@
 // src/libs/middleware/auth.ts
 import { NextRequest, NextResponse } from 'next/server'
-import { ApiResponse } from '@/lib/shared/types'
 import { verifyAccessToken, JWTPayload } from '@/lib/utils'
 import { NextResponseUnauthorized } from '../errors'
 

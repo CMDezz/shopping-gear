@@ -6,14 +6,14 @@ export const productSchema = z.object({
     description: z
         .string()
         .min(10, 'Description must be at least 10 characters'),
-    price: z.coerce.number().positive('Price must be positive'),
-    //   category: z.string().min(1, 'Category is required'),
-    //   imageUrl: z.string().url('Invalid image URL').optional(),
+    price: z
+        .transform(Number)
+        .pipe(z.number().positive('price must be positive')),
 })
 
 export const createProductSchema = productSchema
 export const updateProductSchema = productSchema.partial()
 
 export type ProductFormData = z.infer<typeof productSchema>
-export type CreateProductFormData = z.infer<typeof createProductSchema>
+export type CreateProductFormData = z.infer<typeof productSchema>
 export type UpdateProductFormData = z.infer<typeof updateProductSchema>
